@@ -1,0 +1,42 @@
+.ppm_stars_container {
+	display: flex;
+    text-align: center;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 7px;
+}
+.ppm_stars_container .ppm_star {
+	display: inline-block;
+	background: url(../img/star.svg);
+	background-repeat: no-repeat;
+	width: 13px;
+    height: 13px;
+}
+.ppm_stars_container .ppm_star.empty {
+	background: url(../img/empty-star.svg);
+}
+.ppm_stars_container .ppm_star.half {
+	background: url(../img/empty-star.svg);
+	position: relative;
+}
+.ppm_stars_container .ppm_star.half:before{
+	position: absolute;
+	background: url(../img/star.svg);
+	top: 0;
+	left: 0;
+	width: 7px;
+	content: ' ';
+	height: 13px;
+}
+.ppm_stars_container .ppm_stars_note{
+	display: inline-block;
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 12px;
+	line-height: 14px;
+	/* identical to box height */
+
+	padding-left: 7px;
+	color: #074A76;
+}
