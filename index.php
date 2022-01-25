@@ -5,7 +5,7 @@
  * Requires at least: 5.8
  * Requires PHP:      7.4
  * Version:           1.0.0
- * Author:            Sabri Bouchaala
+ * Author:            Sabri Bouchaala 
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       ppm-custom-blocks
@@ -18,17 +18,97 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class PPM_CLASS {
-	static $config = array();
-	private static $_instance = null;
-
+    static $config = array();
+    private static $_instance = null;
 	function __construct() {
-		add_action( 'init', array( $this, 'constants' ), 0 );
-		add_action( 'init', array( $this, 'load_localisation' ), 0 );
-		add_filter( 'render_block', array( $this, 'ppmcb_render_block' ), 10, 2 );
-		add_action( 'init', array( $this, 'ppmcb_block_init' ), 0 );
-		add_filter( 'block_categories', array( $this, 'ppmcb_custom_category' ) );
-		add_shortcode( 'ppm_stars_shortcode', array( $this, 'ppm_stars_shortcode' ) );
-		add_action( 'wp_enqueue_scripts', array( $this, 'ppm_style' ) );
+	 	add_action( 'init', array( $this, 'constants' ), 0 );
+        add_action( 'init', array( $this, 'load_localisation' ), 0 );
+        add_filter( 'render_block', array( $this,'ppmcb_render_block' ), 10, 2 );
+        add_action( 'init', array( $this, 'ppmcb_block_init' ), 0 );
+        add_filter( 'block_categories', array($this,'ppmcb_custom_category') );
+        add_shortcode('ppm_stars_shortcode', array($this,'ppm_stars_shortcode') );
+        add_action( 'wp_enqueue_scripts', array($this,'ppm_scripts' ));
+    	add_action('acf/init', array($this,'acf_agencies_table_block'));
+    }
+    public function acf_agencies_table_block() {
+	
+		// check function exists
+		if( function_exists('acf_register_block') ) {
+			
+			// register a portfolio item block
+			
+			acf_register_block(array(
+				'name'				=> 'agencies-table',
+				'title'				=> __('Agencies table'),
+				'description'		=> __('Agencies table block.'),
+				'render_template'	=> PPM_DIR_PATH . "blocks/agencies-table/agencies-table.php",
+				'enqueue_style' => PPM_PLG_URL. '/assets/css/agencies-table.css',
+				'enqueue_script' => PPM_PLG_URL. '/assets/js/agencies-table.js',
+				'category'			=> 'ppmcb-blocks',
+				'icon'				=> 'excerpt-view',
+				'keywords'			=> array( 'Agencies table' ),
+			));
+		}
+	}
+	
+	function ppm_scripts() {
+		wp_enqueue_style('ppm-style',
+			PPM_PLG_URL. '/assets/css/style.css',
+			[],
+			1
+		);
+
+	}
+ 
+    function ppm_stars_shortcode($atts){
+    	extract(shortcode_atts(
+	        array(
+	    	    'score' => '4.9'
+	    ), $atts));
+	    $stars= 0;
+	    $score = floatval($score);
+	    if( $number )
+	    	$stars = floor($score);
+	    $html = "";
+
+	    for ( $i= 1;$i<= 5;$i++) {
+	    	$class = ' empty';
+	    	if( $i <= floor($score) ){
+	    		$class = ' full';
+	    	}else{
+	    		if( $score < $i && $score > $i-1 ){
+	    			$class = ' half';
+	    		}
+	    	}
+	    	$html .= "<div class='ppm_star ppm_star_".$i.$class."'></div>";
+	    }
+	    return "<div class='ppm_stars_container'>".$html."<div class='ppm_stars_note'>".$score."</div></div>";
+	}
+
+    public function constants(){
+    	
+    	define( 'PPM_DIR_PATH', plugin_dir_path( __FILE__ ) );
+		define( 'PPM_PLG_URL', plugin_dir_url( __FILE__ ) );
+    }
+    public function load_localisation (){
+        global $layers_customizer_controls;
+        load_plugin_textdomain( 'hatrating', false, basename( dirname( __FILE__ ) ) . '/languages' );
+    } // End load_localisation()
+	public function ppmcb_block_init() {
+		$block_folders = array(
+			//'pros-cons',
+			'agency-snapshot',
+			'new-quote',
+			//'comparison-table',
+			'summary',
+			'toc'
+		);
+		foreach ( $block_folders as $block_folder ) {
+			if( file_exists(PPM_DIR_PATH.'blocks/'.$block_folder.'/src/init.php') )
+				require_once PPM_DIR_PATH.'blocks/'.$block_folder.'/src/init.php';
+			else
+				register_block_type( PPM_DIR_PATH . 'blocks/'.$block_folder.'/');
+		}
 	}
 
 	/**
@@ -40,7 +120,7 @@ class PPM_CLASS {
 		}
 
 		$message = sprintf(
-		/* translators: 1: Plugin name 2: Gutenberg 3. Gutenberg Plugin URL */
+			/* translators: 1: Plugin name 2: Gutenberg 3. Gutenberg Plugin URL */
 			esc_html__( '%1$s requires %2$s You can update your WordPress or install %3$s.', 'ppm-custom-blocks' ),
 			'<strong>' . esc_html__( 'Pros & Cons,New Quote,Summary', 'ppm-custom-blocks' ) . '</strong>',
 			'<strong>' . esc_html__( 'Gutenberg Editor', 'ppm-custom-blocks' ) . '</strong>.<br><br>',
@@ -50,70 +130,6 @@ class PPM_CLASS {
 		printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $message );
 	}
 
-	function ppm_style() {
-		wp_enqueue_style( 'ppm-style',
-			PPM_PLG_URL . '/assets/css/style.css',
-			[],
-			1
-		);
-	}
-
-	function ppm_stars_shortcode( $atts ) {
-		extract( shortcode_atts(
-			array(
-				'score' => '4.9'
-			), $atts ) );
-		$stars = 0;
-		$score = floatval( $score );
-		if ( $number ) {
-			$stars = floor( $score );
-		}
-		$html = "";
-
-		for ( $i = 1; $i <= 5; $i ++ ) {
-			$class = ' empty';
-			if ( $i <= floor( $score ) ) {
-				$class = ' full';
-			} else {
-				if ( $score < $i && $score > $i - 1 ) {
-					$class = ' half';
-				}
-			}
-			$html .= "<div class='ppm_star ppm_star_" . $i . $class . "'></div>";
-		}
-
-		return "<div class='ppm_stars_container'>" . $html . "<div class='ppm_stars_note'>" . $score . "</div></div>";
-	}
-
-		public function constants() {
-
-		define( 'PPM_DIR_PATH', plugin_dir_path( __FILE__ ) );
-		define( 'PPM_PLG_URL', plugin_dir_url( __FILE__ ) );
-	} // End load_localisation()
-
-public function load_localisation() {
-		global $layers_customizer_controls;
-		load_plugin_textdomain( 'hatrating', false, basename( dirname( __FILE__ ) ) . '/languages' );
-	}
-
-	public function ppmcb_block_init() {
-		$block_folders = array(
-			//'pros-cons',
-			'agency-snapshot',
-			'new-quote',
-			'comparison-table',
-			'summary',
-			'toc'
-		);
-		foreach ( $block_folders as $block_folder ) {
-			if ( file_exists( PPM_DIR_PATH . 'blocks/' . $block_folder . '/src/init.php' ) ) {
-				require_once PPM_DIR_PATH . 'blocks/' . $block_folder . '/src/init.php';
-			} else {
-				register_block_type( PPM_DIR_PATH . 'blocks/' . $block_folder . '/' );
-			}
-		}
-	}
-
 	public function ppmcb_render_block( $block_content, $block ) {
 		$attrs = $block['attrs'];
 		if ( $block['blockName'] === 'ppmcb/new-quote' ) {
@@ -121,18 +137,18 @@ public function load_localisation() {
 		}
 		if ( $block['blockName'] === 'ppmcb/summary' ) {
 			//echo '<pre>';var_export($block);echo '</pre>';
-			$block_content = '<div class="wp-block-summary">' . $block_content . '</div>';
+			$block_content = '<div class="wp-block-summary">'.$block_content.'</div>';
 		}
 		if ( $block['blockName'] === 'ppmcb/toc' ) {
-
+			
 			$content = $block_content;
 
 			$data = array(
-				'anchors'     => isset( $attrs['anchorsByTags'] ) ? implode( ',', $attrs['anchorsByTags'] ) : 'h2,h3,h4,h5,h6',
-				'include'     => isset( $attrs['includeContainer'] ) ? $attrs['includeContainer'] : null,
-				'exclude'     => isset( $attrs['excludeContainer'] ) ? $attrs['excludeContainer'] : null,
+				'anchors' => isset( $attrs['anchorsByTags'] ) ? implode( ',', $attrs['anchorsByTags'] ) : 'h2,h3,h4,h5,h6',
+				'include' => isset( $attrs['includeContainer'] ) ? $attrs['includeContainer'] : null,
+				'exclude' => isset( $attrs['excludeContainer'] ) ? $attrs['excludeContainer'] : null,
 				'collapsable' => isset( $attrs['collapsable'] ) && ! $attrs['collapsable'] ? 'false' : 'true',
-				'offset'      => isset( $attrs['extraOffset'] ) ? $attrs['extraOffset'] : null,
+				'offset' => isset( $attrs['extraOffset'] ) ? $attrs['extraOffset'] : null,
 			);
 
 			$attr_string = '';
@@ -158,8 +174,8 @@ public function load_localisation() {
 				$content .= '</div>';
 			}
 
-			return $content;
-		}
+	        return $content;
+	    }
 
 		return $block_content;
 	}
@@ -181,7 +197,6 @@ public function load_localisation() {
 	}
 
 }
-
 // Initiation call of plugin
 
-$ppm = new PPM_CLASS( __FILE__ );
+$ppm = new PPM_CLASS(__FILE__);

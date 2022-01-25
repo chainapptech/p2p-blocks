@@ -1,0 +1,106 @@
+.agencies-tables-container {
+
+}
+	.agencies-tables-container .agencies-tables-header {
+		display: flex;
+	}
+		.agencies-tables-container .agencies-tables-header .agency-logo-container {
+			width: 72px;
+			height: 72px;
+			background: #E8E8E8;
+			border-radius: 10px;
+			display: inline-block;
+		}
+			.agencies-tables-container .agencies-tables-header .agency-logo-container img {
+		
+			}
+		.agencies-tables-container .agencies-tables-header .agency-name-container{
+			display: inline-block;
+		}
+			.agencies-tables-container .agencies-tables-header .agency-name-container .agency-name{
+				display: block;
+				font-family: Inter;
+				font-style: normal;
+				font-weight: bold;
+				font-size: 18px;
+				line-height: 22px;
+				width: 100%;
+			}
+			.agencies-tables-container .agencies-tables-header .agency-name-container .agency-location-container{
+				display: flex;
+			}
+				.agencies-tables-container .agencies-tables-header .agency-name-container .agency-location-container .agency-location{
+					
+				}
+					.agencies-tables-container .agencies-tables-header .agency-name-container .agency-location-container .agency-location:before {
+						content: " ";
+						background: url(../img/location.svg);
+						width: 14px;
+						height: 14px;
+						color: #000;
+
+					}
+				.agencies-tables-container .agencies-tables-header .agency-name-container .agency-location-container .agency-employees-number{
+					
+				}
+					.agencies-tables-container .agencies-tables-header .agency-name-container .agency-location-container .agency-employees-number:before{
+						content: " ";
+						background: url(../img/person.svg);
+						width: 14px;
+						height: 14px;
+						color: #000;
+					}
+			.agencies-tables-container .agencies-tables-header .agency-name-container .note-container{
+
+			}
+				.agencies-tables-container .agencies-tables-header .agency-name-container .note-container .note-label{
+
+				}
+				.agencies-tables-container .agencies-tables-header .agency-name-container .note-container .agency_stars_container{
+					display: flex;
+				    text-align: center;
+				    flex-wrap: nowrap;
+				    justify-content: center;
+				    gap: 7px;
+				}
+
+					.agencies-tables-container .agencies-tables-header .agency-name-container .note-container .agency_stars_container .agency_star {
+						display: inline-block;
+						background: url(../img/star.svg);
+						background-repeat: no-repeat;
+						width: 13px;
+					    height: 13px;
+					}
+					.agencies-tables-container .agencies-tables-header .agency-name-container .note-container .agency_stars_container .agency_star.empty {
+						background: url(../img/empty-star.svg);
+					}
+					.agencies-tables-container .agencies-tables-header .agency-name-container .note-container .agency_stars_container .agency_star.half {
+						background: url(../img/empty-star.svg);
+						position: relative;
+					}
+					.agencies-tables-container .agencies-tables-header .agency-name-container .note-container .agency_stars_container .agency_star.half:before{
+						position: absolute;
+						background: url(../img/star.svg);
+						top: 0;
+						left: 0;
+						width: 7px;
+						content: ' ';
+						height: 13px;
+					}
+					.agencies-tables-container .agencies-tables-header .agency-name-container .note-container .agency_stars_container .agency_stars_note{
+						display: inline-block;
+						font-family: Roboto;
+						font-style: normal;
+						font-weight: normal;
+						font-size: 12px;
+						line-height: 14px;
+						/* identical to box height */
+						padding-left: 7px;
+						color: #074A76;
+					}
+			.agencies-tables-container .agencies-tables-header .agency-name-container .note-container a{
+
+			}
+	.agencies-tables-container .agencies-tables-contents{
+
+	}

@@ -31,7 +31,7 @@ function summary_cgb_block_assets() { // phpcs:ignore
 	// Register block styles for both frontend + backend.
 	wp_register_style(
 		'summary-cgb-style-css', // Handle.
-		PPM_PLG_URL . 'blocks/summary/dist/blocks.style.build.css', // Block style CSS.
+		PPM_PLG_URL.'blocks/summary/dist/blocks.style.build.css', // Block style CSS.
 		is_admin() ? array( 'wp-editor' ) : null, // Dependency to include the CSS after it.
 		null // filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.style.build.css' ) // Version: File modification time.
 	);
@@ -39,7 +39,7 @@ function summary_cgb_block_assets() { // phpcs:ignore
 	// Register block editor script for backend.
 	wp_register_script(
 		'summary-cgb-block-js', // Handle.
-		PPM_PLG_URL . 'blocks/summary/dist/blocks.build.js', // Block.build.js: We register the block here. Built with Webpack.
+		PPM_PLG_URL.'blocks/summary/dist/blocks.build.js', // Block.build.js: We register the block here. Built with Webpack.
 		array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor' ), // Dependencies, defined above.
 		null, // filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.build.js' ), // Version: filemtime — Gets file modification time.
 		true // Enqueue the script in the footer.
@@ -48,7 +48,7 @@ function summary_cgb_block_assets() { // phpcs:ignore
 	// Register block editor styles for backend.
 	wp_register_style(
 		'summary-cgb-block-editor-css', // Handle.
-		PPM_PLG_URL . 'blocks/summary/dist/blocks.editor.build.css', // Block editor CSS.
+		PPM_PLG_URL.'blocks/summary/dist/blocks.editor.build.css', // Block editor CSS.
 		array( 'wp-edit-blocks' ), // Dependency to include the CSS after it.
 		null // filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.editor.build.css' ) // Version: File modification time.
 	);
@@ -58,7 +58,7 @@ function summary_cgb_block_assets() { // phpcs:ignore
 		'summary-cgb-block-js',
 		'cgbGlobal', // Array containing dynamic data for a JS Global.
 		[
-			'pluginDirUrl' => PPM_PLG_URL,
+			'pluginDirUrl'  => PPM_PLG_URL,
 			// Add more data here that you want to access from `cgbGlobal` object.
 		]
 	);
@@ -73,7 +73,7 @@ function summary_cgb_block_assets() { // phpcs:ignore
 	 * @link https://wordpress.org/gutenberg/handbook/blocks/writing-your-first-block-type#enqueuing-block-scripts
 	 * @since 1.16.0
 	 */
-	if ( function_exists( 'has_blocks' ) ) {
+	if ( function_exists('has_blocks') ) {
 		register_block_type(
 			'ppmcb/summary', array(
 				// Enqueue blocks.style.build.css on both frontend & backend.
@@ -84,9 +84,8 @@ function summary_cgb_block_assets() { // phpcs:ignore
 				'editor_style'  => 'summary-cgb-block-editor-css',
 			)
 		);
-	} else {
+	}else {
 		add_action( 'admin_notices', 'PPM_CLASS::ppmcb_admin_notice_require_gutenberg' );
-
 		return;
 	}
 }

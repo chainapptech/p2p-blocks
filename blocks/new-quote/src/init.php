@@ -63,7 +63,7 @@ function new_quote_cgb_block_assets() { // phpcs:ignore
 			// Add more data here that you want to access from `cgbGlobal` object.
 		]
 	);
-	if ( function_exists( 'has_blocks' ) ) {
+	if ( function_exists('has_blocks') ) {
 		/**
 		 * Register Gutenberg block on server-side.
 		 *
@@ -84,9 +84,8 @@ function new_quote_cgb_block_assets() { // phpcs:ignore
 				'editor_style'  => 'new_quote-cgb-block-editor-css',
 			)
 		);
-	} else {
+	}else {
 		add_action( 'admin_notices', 'PPM_CLASS::ppmcb_admin_notice_require_gutenberg' );
-
 		return;
 	}
 }

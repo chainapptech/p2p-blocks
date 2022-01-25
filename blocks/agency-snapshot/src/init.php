@@ -20,7 +20,6 @@ if ( ! function_exists( 'agency_snapshot_main_style_for_front' ) ) {
 		);
 		wp_enqueue_style( 'agency-snapshot-nichetablewpwp-maincss-front' );
 	}
-
 	// Register style sheet.
 	add_action( 'wp_enqueue_scripts', 'agency_snapshot_main_style_for_front' );
 }
@@ -29,16 +28,15 @@ if ( ! function_exists( 'agency_snapshot_main_style_for_front' ) ) {
 //Main Style for Editor
 if ( ! function_exists( 'agency_snapshot_main_style_for_editor' ) ) {
 	function agency_snapshot_main_style_for_editor() {
-		wp_enqueue_style(
-			'agency-snapshot-nichetablewpwp-maincss-editor',
-			plugins_url( '/dist/blocks.style.build.css', dirname( __FILE__ ) ),
-			[],
-			1
-		);
+			wp_enqueue_style(
+					'agency-snapshot-nichetablewpwp-maincss-editor',
+					plugins_url( '/dist/blocks.style.build.css', dirname( __FILE__ ) ),
+					[],
+					1
+			);
 	}
-
 	add_action( 'enqueue_block_editor_assets', 'agency_snapshot_main_style_for_editor' );
-}
+} 
 
 /**
  * Enqueue assets for backend editor
@@ -72,7 +70,6 @@ function nichetablewpwp_agency_snapshot_blocks_editor_assets() {
 		)
 	);
 }
-
 add_action( 'enqueue_block_editor_assets', 'nichetablewpwp_agency_snapshot_blocks_editor_assets' );
 
 /**
@@ -81,15 +78,14 @@ add_action( 'enqueue_block_editor_assets', 'nichetablewpwp_agency_snapshot_block
 
 // CSS and JS For Admin
 if ( ! function_exists( 'admin_agency_snapshot_style' ) ) {
-	function admin_style() {
-		wp_enqueue_style( 'admin-agency-snapshot-styles', plugins_url( 'dist/getting-started.css', dirname( __FILE__ ) ) );
-	}
-
-	add_action( 'admin_enqueue_scripts', 'admin_agency_snapshot_style' );
+function admin_style() {
+	wp_enqueue_style('admin-agency-snapshot-styles',plugins_url( 'dist/getting-started.css', dirname( __FILE__ ) ) );
+  }
+	add_action('admin_enqueue_scripts', 'admin_agency_snapshot_style');
 }
 
 function new_agency_snapshot_cgb_block_assets() { // phpcs:ignore
-	if ( function_exists( 'has_blocks' ) ) {
+	if ( function_exists('has_blocks') ) {
 		/**
 		 * Register Gutenberg block on server-side.
 		 *
@@ -110,9 +106,8 @@ function new_agency_snapshot_cgb_block_assets() { // phpcs:ignore
 				'editor_style'  => 'new_agency_snapshot-cgb-block-editor-css',
 			)
 		);
-	} else {
+	}else {
 		add_action( 'admin_notices', 'PPM_CLASS::ppmcb_admin_notice_require_gutenberg' );
-
 		return;
 	}
 }

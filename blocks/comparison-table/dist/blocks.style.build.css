@@ -1879,12 +1879,14 @@ span.read-review {
 	.h_ma_fs .nichetable__td {
 		font-size: var(--mdfs)
 	}
+
 	table[id*="nichetablewpwp"]:not(.h_mtm) tr {
 		padding-bottom: 15px !important;
 		border-bottom: 1px solid var(--nt-border-color, #ddd) !important;
 		padding-top: 7px;
 		margin-bottom: var(--tr-gap, 0px) !important
 	}
+
 	table[id*="nichetablewpwp"].tr_btbm tr,
 	table[id*="nichetablewpwp"].tr_mbb tr:not(:last-child) {
 		border-bottom: 1px solid var(--nt-border-color, #ddd) !important
