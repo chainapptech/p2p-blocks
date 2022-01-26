@@ -314,6 +314,9 @@
 		border-top: 2px solid #E0E0E0;
 		border-right: 0px;
 	}
+	.agencies-tables-container .agencies-tables-contents .agencies-tables-contents-items .mobile-header:first-child {
+		border-top: none;
+	}
 	.agencies-tables-container .agencies-tables-contents .agencies-tables-contents-items .agencies-tables-contents-items-item:last-child {
 		border-top: 2px solid #E0E0E0;
 	}

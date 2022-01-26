@@ -1,5 +1,7 @@
 jQuery(document).ready(function($) {
+	
 	$(window).resize(function(){
+		$('.agencies-tables-contents').find('.mobile-header').remove();
 		$('.agencies-tables-contents').each(function() {
 		var head_col_count =  $(this).find('th').size();
 			if($(window).width() <= 768 ){
