@@ -76,14 +76,6 @@ add_action( 'enqueue_block_editor_assets', 'nichetablewpwp_agency_snapshot_block
  * Enqueue Gutenberg block assets for both frontend + backend.=============================================
  */
 
-// CSS and JS For Admin
-if ( ! function_exists( 'admin_agency_snapshot_style' ) ) {
-function admin_style() {
-	wp_enqueue_style('admin-agency-snapshot-styles',plugins_url( 'dist/getting-started.css', dirname( __FILE__ ) ) );
-  }
-	add_action('admin_enqueue_scripts', 'admin_agency_snapshot_style');
-}
-
 function new_agency_snapshot_cgb_block_assets() { // phpcs:ignore
 	if ( function_exists('has_blocks') ) {
 		/**

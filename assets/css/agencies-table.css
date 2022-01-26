@@ -223,8 +223,10 @@
 				border-right: 2px solid #E0E0E0;
 				padding: 10px;
 				border-bottom: none;
-				border-radius: 0px 10px 0px;
-				border-left: none;
+				border-radius: 0px 0px 10px 10px;
+			    border-left: none;
+			    vertical-align: text-top;
+			    background: #FFF;
 			}
 			.agencies-tables-container .agencies-tables-contents .agencies-tables-contents-items .agencies-tables-contents-items-item ul, .agencies-tables-container .agencies-tables-contents .agencies-tables-contents-items .agencies-tables-contents-items-item ol {
 				margin: 0px;
@@ -242,8 +244,8 @@
 			  }
 @media only screen and (max-width: 991px) {
 	.agencies-tables-container .agencies-tables-header {
-		display: inline-block;
-		width: 100%;
+	    flex-wrap: wrap;
+	    gap: 0px;
 	}
 	.agencies-tables-container .agencies-tables-header .agency-logo-container-outer {
 	    width: 100%;
@@ -290,6 +292,7 @@
 	}
 	.agencies-tables-container .agencies-tables-header a {
 		display: block;
+		margin: 0px;
 	}
 	.agencies-tables-container .agencies-tables-contents .agencies-tables-contents-items .mobile-header {
 		padding: 20px 30px;
