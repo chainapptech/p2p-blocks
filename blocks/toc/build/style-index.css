@@ -79,7 +79,7 @@ html {
 	margin-top: 0
 }
 
-.ib-toc-container .ib-toc-anchors a {
+.wp-block-ppmcb-toc .ib-toc-container .ib-toc-anchors a {
 	color: var(--linkColor)
 	font-family: Inter;
 	font-style: normal;

@@ -205,11 +205,11 @@
                 },
                 includeContainer: {
                     type: "string",
-                    default: ""
+                    default: ".entry,.post,.page,article"
                 },
                 excludeContainer: {
                     type: "string",
-                    default: ""
+                    default: ".agencies-tables-container,.wp-block-summary"
                 },
                 collapsable: {
                     type: "boolean",
