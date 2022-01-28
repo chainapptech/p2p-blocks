@@ -20,7 +20,7 @@ if( have_rows('agency_header') ):
 		<?php
 		if( !empty( $name ) ):?>
 			<div class="agency-name-container">
-				<h4 class="agency-name"><?php echo $name;?></h4>
+				<h5 class="agency-name"><?php echo $name;?></h5>
 				<div class="agency-location-container">
 					<?php if( !empty( $location ) ):?>
 					<div class="agency-location">
@@ -48,13 +48,13 @@ if( have_rows('agency_header') ):
 			    for( $i= 1;$i<= 5;$i++) {
 			    	$class = ' empty';
 			    	if( $i <= floor($note) ){
-			    		$class = ' full';
+			    		$html .= "<div class='agency_star agency_star_".$i.$class."'><i class='fas fa-star'></i></div>";
 			    	}else{
 			    		if( $note < $i && $note > $i-1 ){
-			    			$class = ' half';
+			    			$html .= "<div class='agency_star agency_star_".$i.$class."'><i class='fas fa-star-half-alt'></i></div>";
 			    		}
 			    	}
-			    	$html .= "<div class='agency_star agency_star_".$i.$class."'></div>";
+			    	
 			    }?>
 			    <div class='agency_stars_container'><?php echo $html;?><div class="agency_stars_note"><?php echo $note;?></div></div>
 			</div>

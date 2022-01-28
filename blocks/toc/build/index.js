@@ -165,7 +165,7 @@
                 },
                 hierarchicalView: {
                     type: "boolean",
-                    default: !0
+                    default: !1
                 },
                 bgColor: {
                     type: "string",
@@ -201,7 +201,7 @@
                 },
                 anchorsByTags: {
                     type: "array",
-                    default: ["h2", "h3", "h4", "h5", "h6"]
+                    default: ["h2"]
                 },
                 includeContainer: {
                     type: "string",
@@ -679,7 +679,7 @@
             keywords: ["toc"],
             getEditWrapperProps: e => ({
                 className: "ib-block-toc",
-                "data-anchors": e.anchorsByTags.join(),
+                "data-anchors": e.anchorsByTags,
                 "data-include": e.includeContainer,
                 "data-exclude": e.excludeContainer,
                 "data-collapsable": e.collapsable,

@@ -6,13 +6,14 @@
     gap: 7px;
 }
 .ppm_stars_container .ppm_star {
-	display: inline-block;
-	background: url(../img/star.svg);
+	/*background: url(../img/star.svg);
 	background-repeat: no-repeat;
 	width: 13px;
-    height: 13px;
+    height: 13px;*/
+    color: #074a76;
+    font-size: 16px;
 }
-.ppm_stars_container .ppm_star.empty {
+/*.ppm_stars_container .ppm_star.empty {
 	background: url(../img/empty-star.svg);
 }
 .ppm_stars_container .ppm_star.half {
@@ -27,16 +28,79 @@
 	width: 7px;
 	content: ' ';
 	height: 13px;
-}
+}*/
 .ppm_stars_container .ppm_stars_note{
 	display: inline-block;
-	font-family: Roboto;
+	font-family: 'Inter',sans-serif;
 	font-style: normal;
-	font-weight: normal;
+	font-weight: bold;
 	font-size: 12px;
-	line-height: 14px;
+	line-height: 18px;
 	/* identical to box height */
-
 	padding-left: 7px;
 	color: #074A76;
 }
+/* update toc style */
+.ib-toc-container .ib-toc-body ol li:before {
+	background-image: url(../img/arrow-right.png);
+    content: " ";
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 18px;
+    height: 18px;
+    background-size: contain;
+    vertical-align: sub;
+}
+
+.ib-block-toc.fixedToLeft {
+    position: fixed;
+    top: 80px;
+    width: 170px;
+    left: 0;
+    background: #fff;
+}
+.ib-block-toc.fixedToLeft.hide {
+	display: none;
+}
+.ib-block-toc.fixedToLeft .toc_button {
+	display: none;
+}
+.ib-block-toc.fixedToLeft .ib-toc-container {
+	border: 0px;
+}
+.ib-block-toc.fixedToLeft  .ib-toc-container .ib-toc-body ol li:before {
+	display: none;
+}
+.ib-block-toc.fixedToLeft  .ib-toc-container .ib-toc-body ol li {
+    padding-left: 0px;
+}
+.ib-block-toc.fixedToLeft .ib-toc-container .ib-toc-header {
+	background: inherit;
+    border-radius: 0px;
+    padding: 12px 15px 12px 0px;
+}
+.ib-block-toc.fixedToLeft .ib-toc-container .ib-toc-body > ol > li {
+    padding: 11px 12px;
+    margin: 0px;
+    padding-left: 0px;
+}
+.ib-block-toc.fixedToLeft .wp-block-ppmcb-toc .ib-toc-container .ib-toc-anchors a {
+	color: #000;
+}
+.ib-block-toc.fixedToLeft .ib-toc-container .ib-toc-header .ib-toc-header-title {
+	text-align: left;
+    color: #EC573D;
+
+}
+@media screen and (min-width: 1609px) {
+	.ib-block-toc.fixedToLeft {
+	    width: 220px;
+	}
+}
+
+@media screen and (max-width: 1610px) {
+	.ib-block-toc.fixedToLeft {
+	    display: none!important;
+	}
+}
+

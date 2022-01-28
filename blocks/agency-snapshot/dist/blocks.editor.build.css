@@ -3660,3 +3660,18 @@ body [data-type="ppmcb/niche-table-pro"] .block-editor-block-list__layout .block
 div[class*="editor-block-list__layout"] [data-type="ppmcb/tablerow"]:nth-of-type(odd) {
     background: #FFF4F2;
 }
+
+.border-bottom-each-row--around-table > .block-editor-inner-blocks > .block-editor-block-list__layout {
+	border: 2px solid #E0E0E0;
+	border-radius: 10px;
+}
+.wp-block[data-type="ppmcb/tablerow"] .block-editor-block-list__layout .wp-block {
+	border: 0px;
+}
+
+.border-bottom-each-row--around-table [data-type="ppmcb/tableheading"] {
+	border-right: 2px solid #E0E0E0;
+}
+.border-bottom-each-row--around-table [data-type="ppmcb/tableheading"]:last-child {
+	border-right: none;
+}

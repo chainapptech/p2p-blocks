@@ -27,6 +27,8 @@ class PPM_CLASS {
         add_action( 'init', array( $this, 'ppmcb_block_init' ), 0 );
         add_filter( 'block_categories', array($this,'ppmcb_custom_category') );
         add_shortcode('ppm_stars_shortcode', array($this,'ppm_stars_shortcode') );
+		add_shortcode( 'ppm_action_button_shortcode', array($this,'ppm_action_button_shortcode' ) );
+		add_shortcode( 'ppm_header_shortcode', array($this,'ppm_header_shortcode' ) );
         add_action( 'wp_enqueue_scripts', array($this,'ppm_scripts' ));
     	add_action('acf/init', array($this,'acf_agencies_table_block'));
     }
@@ -57,8 +59,33 @@ class PPM_CLASS {
 			[],
 			1
 		);
-
+		wp_register_style( 'ppm-font-awesome', PPM_PLG_URL. '/assets/css/font-awesome.min.css'  );
+    	wp_enqueue_style( 'ppm-font-awesome' );
 	}
+
+	function ppm_action_button_shortcode( $atts ) {
+	       extract( shortcode_atts(
+	               array(
+	                       'color' => 'blue',
+	                       'title' => 'Title',
+	                       'url' => ''
+	               ),
+	               $atts
+	       ));
+	       return '<a  href="' . $url . '" class="ppm-action-button '.$color.'-button"><span>' . $title . '</span></a>';
+	}
+
+	function ppm_header_shortcode( $atts ) {
+	       extract( shortcode_atts(
+	               array(
+	                       'tag' => 'h2',
+	                       'title' => 'Title',
+	               ),
+	               $atts
+	       ));
+	       return '<'.$tag.' class="ppm-header-tag"><span>' . $title . '</span></'.$tag.'>';
+	}
+
  
     function ppm_stars_shortcode($atts){
     	extract(shortcode_atts(
@@ -74,13 +101,13 @@ class PPM_CLASS {
 	    for ( $i= 1;$i<= 5;$i++) {
 	    	$class = ' empty';
 	    	if( $i <= floor($score) ){
-	    		$class = ' full';
+	    		$html .= "<div class='ppm_star ppm_star_".$i."'><i class='fas fa-star'></i></div>";
 	    	}else{
 	    		if( $score < $i && $score > $i-1 ){
-	    			$class = ' half';
+	    			$html .= "<div class='ppm_star ppm_star_".$i."'><i class='fas fa-star-half-alt'></i></div>";
 	    		}
 	    	}
-	    	$html .= "<div class='ppm_star ppm_star_".$i.$class."'></div>";
+	    	
 	    }
 	    return "<div class='ppm_stars_container'>".$html."<div class='ppm_stars_note'>".$score."</div></div>";
 	}
