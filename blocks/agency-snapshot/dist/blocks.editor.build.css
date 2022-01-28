@@ -3637,13 +3637,17 @@ body [data-type="ppmcb/niche-table-pro"] .block-editor-block-list__layout .block
     background: #FFF;
 }
 .wp-block[data-type="ppmcb/tablerow"] .block-editor-block-list__layout>div:first-child .table_cell {
-	font-weight: bold;
 	font-family: Inter;
 	font-style: normal;
-	font-weight: bold;
+	font-weight: normal;
 	font-size: 16px;
 	line-height: 19px;
+	color: #000;
+}
+.block-editor-inner-blocks .table_row div[data-type="ppmcb/tableheading"] .table_heading {
+	font-weight: bold;
 	text-transform: uppercase;
+	color: #000;
 }
 .table_row div[data-type="ppmcb/tableheading"] .table_heading, .table_row div[data-type="ppmcb/tabledata"] .table_heading {
     padding: 22px;
