@@ -3884,19 +3884,24 @@ table[id*="nichetablewpwp"] .hdul:hover {
 .container-agency-snapshot-block-content table[id*="nichetablewpwp"].border-bottom-each-row--around-table tr:last-child{
     border-radius: inherit;
 }
-.container-agency-snapshot-block-content table[id*="nichetablewpwp"].border-bottom-each-row--around-table tr.thead th{
-	border-radius: 10px 10px 0px 0px;
+.container-agency-snapshot-block-content table[id*="nichetablewpwp"].border-bottom-each-row--around-table tr.thead th:last-child{
+	border-radius: 0px 10px 0px 0px;
+}
+.container-agency-snapshot-block-content table[id*="nichetablewpwp"].border-bottom-each-row--around-table tr.thead th:first-child{
+	border-radius: 10px 0px 0px 0px;
 }
 .container-agency-snapshot-block-content table[id*="nichetablewpwp"].border-bottom-each-row--around-table tr:not(.thead) td:first-child {
-	font-weight: bold;
 	font-family: Inter;
 	font-style: normal;
-	font-weight: bold;
+	font-weight: normal;
 	font-size: 16px;
 	line-height: 19px;
+	
+}
+.container-agency-snapshot-block-content table[id*="nichetablewpwp"].border-bottom-each-row--around-table tr.thead th {
+	font-weight: bold;
 	text-transform: uppercase;
 }
-
 .container-agency-snapshot-block-content .niche_table tr{
     background: #FFF;
 }
@@ -3913,6 +3918,9 @@ table[id*="nichetablewpwp"] .hdul:hover {
     line-height: 19px;
     color: #000;
     font-family: Inter;
+}
+.container-agency-snapshot-block-content .niche_table tr.thead .ppm-header-tag:before {
+	display: none;
 }
 
 .container-agency-snapshot-block-content .border-bottom-each-row--around-table table[id*="nichetablewpwp"] th {
@@ -3945,7 +3953,7 @@ table[id*="nichetablewpwp"] .hdul:hover {
     background-color: #FFF4F2 !important;
 }
 
-.container-agency-snapshot-block-content .niche_table tr td a{
+.container-agency-snapshot-block-content .niche_table tr a.ppm-action-button{
     font-family: Inter;
     font-style: normal;
     border: 2px solid transparent;
@@ -4060,4 +4068,24 @@ table[id*="nichetablewpwp"] .hdul:hover {
 	.table_wrap:not(.mobail_style_four):not(.ms_desable) td:nth-of-type(9):before {
 		content: var(--nt-m-th9)
 	}*/
+	.container-agency-snapshot-block-content .niche_table tr td, .container-agency-snapshot-block-content .niche_table tr th {
+		display: block;
+		width: 100%;
+	}
+	.container-agency-snapshot-block-content .niche_table tr.thead {
+		display: none;
+	}
+	.container-agency-snapshot-block-content .niche_table tr td .mobile-header {
+		font-weight: bold;
+	    text-transform: uppercase;
+	    font-size: 16px;
+	    margin-bottom: 10px;
+	}
+	.container-agency-snapshot-block-content table[id*="nichetablewpwp"].border-bottom-each-row--around-table tr:not(.thead) td:first-child {
+		font-weight: bold;
+	}
+	.container-agency-snapshot-block-content table[id*="nichetablewpwp"].border-bottom-each-row--around-table tr:not(.thead) td:first-child .mobile-header {
+		display: none;
+	}
+	
 }

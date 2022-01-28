@@ -261,6 +261,14 @@
 			    background: #FFF;
 			    text-align: left;
 			}
+			.agencies-tables-container .agencies-tables-contents .agencies-tables-contents-items .agencies-tables-contents-items-item p {
+				font-family: Inter;
+				font-style: normal;
+				font-weight: normal;
+				font-size: 14px;
+				line-height: 17px;
+				color: #000000;
+			}
 			.agencies-tables-container .agencies-tables-contents .agencies-tables-contents-items .agencies-tables-contents-items-item ul, .agencies-tables-container .agencies-tables-contents .agencies-tables-contents-items .agencies-tables-contents-items-item ol {
 				margin: 0px;
 				margin-left: 5px;

@@ -12,4 +12,18 @@ jQuery(document).ready(function($) {
 			}
 		});
 	}).resize();
+
+	$(window).resize(function(){
+		$('.container-agency-snapshot-block-content').find('.mobile-header').remove();
+		$('.container-agency-snapshot-block-content').each(function() {
+		var head_col_count =  $(this).find('th').size();
+		console.log(head_col_count);
+			if($(window).width() <= 991 ){
+				for ( i=1; i <= head_col_count; i++ )  {
+					var head_col_label = $(this).find('th:nth-child('+ i +')').text();
+					$(this).find('tr:not(.thead) td:nth-child('+ (i) +')').prepend('<div class="mobile-header">'+head_col_label+'</div>' );
+				}
+			}
+		});
+	}).resize();
 });
