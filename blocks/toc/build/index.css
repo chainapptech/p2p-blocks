@@ -66,3 +66,23 @@ button[class*=editor-block-list-item-ideabox-] .block-editor-block-icon svg {
 .ib-block-control--selector select {
 	min-height: 110px !important
 }
+
+.ib-block-toc .ib-toc-container .ib-toc-anchors a {
+    color: var(--linkColor) font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    text-decoration: none;
+}
+
+.ib-block-toc .ib-toc-container ol li:before {
+    background-image: url(img/arrow-right.png);
+    content: " "!important;
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 18px;
+    height: 18px;
+    background-size: contain;
+    vertical-align: sub;
+}

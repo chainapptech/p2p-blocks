@@ -4,7 +4,6 @@
 		if ( '' === settings.container ) {
 			return;
 		}
-		console.log(settings);
 		this.container = settings.container || '.ib-toc-container';
 		this.anchors = settings.anchors;
 		this.includeContainer = settings.includeContainer || '';
@@ -53,11 +52,12 @@
 				var parent = $("body:not(.block-editor-page) "+selector).closest('.ib-block-toc');
 				var position = parent.position();
 				if( parent.length > 0 ){
-					$clone = parent.clone().addClass('fixedToLeft hide');
+					$clone = parent.clone().addClass('fixedToLeft hide-class');
 					$clone.insertAfter('.'+parent.attr('class'));
 					$(window).resize(function(){
-						parent.next('.fixedToLeft').css('left',(position.left-parent.next('.fixedToLeft').width()-20)+'px');
-						$(document).scroll(function() {
+						var offset = parent.offset();
+						parent.next('.fixedToLeft').css('left',(offset.left-parent.next('.fixedToLeft').innerWidth()-20)+'px');
+						$('body').scroll(function() {
 							bottom_of_object = parent.position().top + parent.outerHeight();
 							var y = $(this).scrollTop();
 							if ( y > bottom_of_object ) {
@@ -70,8 +70,7 @@
 				}
 			}
 			
-		}
-		,
+		},
 		insertPrefix: function() {
 			$('body:not(.block-editor-page').find( '.ib-toc-anchors li' ).each(function(index,elem){
 				var $elem = $(elem);
@@ -250,10 +249,11 @@
 				extraOffset += this.extraOffset;
 			}
 				
-			$( this.container ).find( 'a' ).on( 'click', function(e) {
+			$( this.container ).find( 'a' ).off().on( 'click', function(e) {
 				hash = $( this ).attr( 'href' ).replace( '#', '' );
 				if ('' !== hash && $( '#' + hash ).length > 0) {
 					e.preventDefault();
+					e.stopPropagation();
 					offset = Math.round( $( '#' + hash ).offset().top - extraOffset );
 					$( 'html, body' ).animate({
 						scrollTop: offset

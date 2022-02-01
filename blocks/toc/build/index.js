@@ -581,6 +581,16 @@
                 }
             };
         Object(l.registerBlockType)("ppmcb/toc", {
+
+            name: "ppmcb/toc",
+            title: "New Table of Contents",
+            category: "ppmcb-blocks",
+            icon: "smiley",
+            description: "Improve readability and navigation of your websites with the Table of Contents Block.",
+            supports: {
+                "align": true,
+                "html": false
+            },
             edit: function({
                 attributes: e,
                 setAttributes: t

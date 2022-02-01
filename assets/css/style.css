@@ -43,7 +43,7 @@
 /* update toc style */
 .ib-toc-container .ib-toc-body ol li:before {
 	background-image: url(../img/arrow-right.png);
-    content: " ";
+    content: " "!important;
     background-repeat: no-repeat;
     background-position: center center;
     width: 18px;
@@ -55,11 +55,11 @@
 .ib-block-toc.fixedToLeft {
     position: fixed;
     top: 80px;
-    width: 170px;
+    width: 170px!important;
     left: 0;
     background: #fff;
 }
-.ib-block-toc.fixedToLeft.hide {
+.ib-block-toc.fixedToLeft.hide-class {
 	display: none;
 }
 .ib-block-toc.fixedToLeft .toc_button {
@@ -94,7 +94,7 @@
 }
 @media screen and (min-width: 1609px) {
 	.ib-block-toc.fixedToLeft {
-	    width: 220px;
+	    width: 220px!important;
 	}
 }
 
