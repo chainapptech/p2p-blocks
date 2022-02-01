@@ -52,7 +52,7 @@
 				var parent = $("body:not(.block-editor-page) "+selector).closest('.ib-block-toc');
 				var position = parent.position();
 				if( parent.length > 0 ){
-					$clone = parent.clone().addClass('fixedToLeft hide');
+					$clone = parent.clone().addClass('fixedToLeft hide-class');
 					$clone.insertAfter('.'+parent.attr('class'));
 					$(window).resize(function(){
 						var offset = parent.offset();

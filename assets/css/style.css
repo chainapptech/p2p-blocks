@@ -59,7 +59,7 @@
     left: 0;
     background: #fff;
 }
-.ib-block-toc.fixedToLeft.hide {
+.ib-block-toc.fixedToLeft.hide-class {
 	display: none;
 }
 .ib-block-toc.fixedToLeft .toc_button {
