@@ -4,7 +4,6 @@
 		if ( '' === settings.container ) {
 			return;
 		}
-		console.log(settings);
 		this.container = settings.container || '.ib-toc-container';
 		this.anchors = settings.anchors;
 		this.includeContainer = settings.includeContainer || '';
@@ -56,7 +55,8 @@
 					$clone = parent.clone().addClass('fixedToLeft hide');
 					$clone.insertAfter('.'+parent.attr('class'));
 					$(window).resize(function(){
-						parent.next('.fixedToLeft').css('left',(position.left-parent.next('.fixedToLeft').width()-20)+'px');
+						var offset = parent.offset();
+						parent.next('.fixedToLeft').css('left',(offset.left-parent.next('.fixedToLeft').innerWidth()-20)+'px');
 						$(document).scroll(function() {
 							bottom_of_object = parent.position().top + parent.outerHeight();
 							var y = $(this).scrollTop();
