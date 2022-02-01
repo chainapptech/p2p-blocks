@@ -67,11 +67,16 @@
 							}
 						});
 					}).resize();
+					$('.ib-block-toc.fixedToLeft a').off().on('click', function (event) {
+				        event.preventDefault();
+				        $('html, body').animate({
+				            scrollTop: $($.attr(this, 'href')).position().top
+				        }, 500);
+				    });
 				}
 			}
 			
-		}
-		,
+		},
 		insertPrefix: function() {
 			$('body:not(.block-editor-page').find( '.ib-toc-anchors li' ).each(function(index,elem){
 				var $elem = $(elem);
