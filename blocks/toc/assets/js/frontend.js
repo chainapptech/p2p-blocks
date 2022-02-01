@@ -67,12 +67,7 @@
 							}
 						});
 					}).resize();
-					$('.ib-block-toc.fixedToLeft a').off().on('click', function (event) {
-				        event.preventDefault();
-				        $('html, body').animate({
-				            scrollTop: $($.attr(this, 'href')).position().top
-				        }, 500);
-				    });
+					$('.ib-block-toc.fixedToLeft a').off();
 				}
 			}
 			
