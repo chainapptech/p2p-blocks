@@ -101,9 +101,7 @@ html {
 	padding: 19px 12px;
 	margin: 0px;
 }
-.ib-block-toc.fixedToLeft,.ib-block-toc.fixedToLeft .ib-toc-container .ib-toc-body > ol > li{
-	background: inherit;
-}
+
 .ib-toc-container ol li {
 	counter-increment: item
 }

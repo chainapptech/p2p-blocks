@@ -4,6 +4,7 @@
 		if ( '' === settings.container ) {
 			return;
 		}
+		console.log(settings);
 		this.container = settings.container || '.ib-toc-container';
 		this.anchors = settings.anchors;
 		this.includeContainer = settings.includeContainer || '';
@@ -52,12 +53,11 @@
 				var parent = $("body:not(.block-editor-page) "+selector).closest('.ib-block-toc');
 				var position = parent.position();
 				if( parent.length > 0 ){
-					$clone = parent.clone().addClass('fixedToLeft hide-class');
+					$clone = parent.clone().addClass('fixedToLeft hide');
 					$clone.insertAfter('.'+parent.attr('class'));
 					$(window).resize(function(){
-						var offset = parent.offset();
-						parent.next('.fixedToLeft').css('left',(offset.left-parent.next('.fixedToLeft').innerWidth()-20)+'px');
-						$('body').scroll(function() {
+						parent.next('.fixedToLeft').css('left',(position.left-parent.next('.fixedToLeft').width()-20)+'px');
+						$(document).scroll(function() {
 							bottom_of_object = parent.position().top + parent.outerHeight();
 							var y = $(this).scrollTop();
 							if ( y > bottom_of_object ) {
@@ -67,11 +67,11 @@
 							}
 						});
 					}).resize();
-					$('.ib-block-toc.fixedToLeft a').off();
 				}
 			}
 			
-		},
+		}
+		,
 		insertPrefix: function() {
 			$('body:not(.block-editor-page').find( '.ib-toc-anchors li' ).each(function(index,elem){
 				var $elem = $(elem);
