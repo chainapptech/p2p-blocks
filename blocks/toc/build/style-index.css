@@ -141,6 +141,8 @@ html {
 	border: none;
 	border-radius: 0px 0px 10px 10px;
 	text-transform: inherit;
+	outline: none;
+    cursor: pointer;
 }
 
 .ib-toc-container .ib-toc-body > ol > li:last-child {
