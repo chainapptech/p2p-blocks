@@ -57,7 +57,7 @@
 					$(window).resize(function(){
 						var offset = parent.offset();
 						parent.next('.fixedToLeft').css('left',(offset.left-parent.next('.fixedToLeft').innerWidth()-20)+'px');
-						$('body').scroll(function() {
+						$(document).scroll(function() {
 							bottom_of_object = parent.position().top + parent.outerHeight();
 							var y = $(this).scrollTop();
 							if ( y > bottom_of_object ) {
@@ -66,6 +66,7 @@
 								parent.next('.fixedToLeft').fadeOut();
 							}
 						});
+						$( '.ib-block-toc.fixedToLeft' ).find( 'a' ).off();
 					}).resize();
 				}
 			}
